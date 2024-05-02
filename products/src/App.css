@@ -13,6 +13,10 @@
   }
 }
 
+.ant-table-cell :hover{
+  background-color: rgba(225, 172, 116, 0.306);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
