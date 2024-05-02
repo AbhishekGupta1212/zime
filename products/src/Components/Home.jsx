@@ -131,8 +131,8 @@ const Home = () => {
 
   return (
     <>
-      <section className="bg-gray-100">
-        <div className="container mx-auto p-4 sm:p-8">
+      <section >
+        <div style={{textAlign:"center"}}>
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ const Home = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
         
           >
-            <Flex gap={40}>
+            <Flex gap={40} alignItems="center" >
             <Search
               placeholder="Search posts"
               onSearch={handleSearch}
@@ -197,7 +197,6 @@ const Home = () => {
               pageSize={pagination.pageSize}
               total={pagination.total}
               onChange={handlePaginationChange}
-    
             />
           </motion.div>
         </div>
