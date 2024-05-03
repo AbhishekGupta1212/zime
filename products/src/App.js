@@ -8,6 +8,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={"404 NOT FOUND"} />
         </Routes>
       </Router>
     </>
