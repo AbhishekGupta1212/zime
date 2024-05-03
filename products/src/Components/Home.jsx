@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input, Select, Pagination,Tag, Flex } from "antd";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation ,useNavigate,useParams} from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -10,6 +9,7 @@ const { Option } = Select;
 
 const Home = () => {
   const location = useLocation();
+  const { page } = useParams();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +32,13 @@ const Home = () => {
     }, 500);
     return () => clearTimeout(delaySearch);
   }, [searchQuery, pagination.current, pagination.pageSize]);
+
+  useEffect(() => {
+    const tagsParam = new URLSearchParams(location.search).get("tags");
+    if (tagsParam) {
+      setSelectedTags(tagsParam.split(","));
+    }
+  }, [location.search]);
 
   const fetchData = async () => {
     try {
@@ -87,6 +94,7 @@ const Home = () => {
       ...prevPagination,
       current: 1, 
     }));
+    // setPagination(1)
     navigate(`?page=1&tags=${value.join(",")}`);
   };
 
@@ -147,7 +155,7 @@ const Home = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
         
           >
-            <Flex gap={40} alignItems="center" >
+            <Flex gap={40} >
             <Search
               placeholder="Search posts"
               onSearch={handleSearch}
